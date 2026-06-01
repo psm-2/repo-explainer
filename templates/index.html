@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>README Generator AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="panel">
+        <h1>README Generator AI</h1>
+        <p class="lede">Paste a short project summary and generate a polished README.</p>
+
+        <form method="post" action="/generate">
+          <label for="project_input">Project input</label>
+          <textarea id="project_input" name="project_input" rows="10" placeholder="Describe your app, API, library, or repository...">{{ project_input or "" }}</textarea>
+          <button type="submit">Generate README</button>
+        </form>
+
+        {% if error %}
+          <div class="notice notice-error">{{ error }}</div>
+        {% endif %}
+
+        {% if readme %}
+          <h2>Generated README</h2>
+          <pre>{{ readme }}</pre>
+        {% endif %}
+      </section>
+    </main>
+  </body>
+</html>
